@@ -1,0 +1,45 @@
+{% extends 'pharmacy/base.html' %}
+
+{%block content%}
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+                <form method="get">
+                    {{myFilter.form}}
+
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <table class="table">
+        <thead>
+            <tr class="table table-dark">
+                <th scope="col">SL</th>
+                <th scope="col">Shop Name</th>
+                <th scope="col">Area</th>
+                <th scope="col">Pic</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for pharm in pharmecy%}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pharm.shop_name}}</td>
+                <td>{{pharm.area}}</td>
+                <td><img width="100px" src="{{pharm.profile_pic.url}}" alt="image"></td>
+                <td><a href="{% url 'shop' pharm.id %}">View</a></td>
+            </tr>
+            {%endfor%}
+
+        </tbody>
+    </table>
+
+</div>
+{%endblock%}

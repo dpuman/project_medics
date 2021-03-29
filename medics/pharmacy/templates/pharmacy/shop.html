@@ -1,0 +1,97 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{%block content%}
+
+
+<div class="container-fluid mt-3">
+    <div class="row">
+
+
+        <!-- filter -->
+
+        <div class="col-lg-3 mx-auto">
+            <div class="list-group">
+
+                <a href="/shop/{{shop.id}}" class="list-group-item list-group-item-action">All Products</a>
+
+
+                {% for category in categorys %}
+                <a href="/shop/{{shop.id}}/?category={{category.id}}"
+                    class="list-group-item list-group-item-action">{{category.name}}</a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <!-- all products -->
+        <div id='products' class="col-lg-9 mx-auto">
+            <div class="row mx-auto">
+                {% for product in page_obj%}
+
+                <div class="card mx-auto mb-3" id="" style="width: 18rem;"><a
+                        href="/shop/{{shop.id}}/{{product.id}}"><img src="{{product.image.url}}" height="250px"
+                            class="card-img-top" alt="..."></a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">Price: <b>${{product.price}}</b> </p>
+                    </div>
+                    <div class="card-footer">
+
+
+                        <button data-product="{{product.id}}" data-pharmacy="{{shop_id}}" data-action="add"
+                            class="btn btn-outline-secondary add-btn  update-cart">Add to Cart</button>
+
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+
+                <!-- {% for product in products%}
+
+                <div class="card mx-auto mb-3" id="" style="width: 18rem;"><a
+                        href="/shop/{{shop.id}}/{{product.id}}"><img src="{{product.image.url}}" height="250px"
+                            class="card-img-top" alt="..."></a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">Price: <b>${{product.price}}</b> </p>
+                    </div>
+                    <div class="card-footer">
+
+
+                        <button data-product="{{product.id}}" data-pharmacy="{{shop_id}}" data-action="add"
+                            class="btn btn-outline-secondary add-btn  update-cart">Add to Cart</button>
+
+
+                    </div>
+
+                </div>
+
+                {% endfor %} -->
+
+            </div>
+            {% if page_obj.has_previous%}
+
+            <a href="?page={{page_obj.previous_page_number}}" class="btn btn-primary">Previous</a>
+            {%endif %}
+
+            <span class="btn btn-outline-success">{{page_obj.number}}</span>
+
+            {% if page_obj.has_next%}
+            <a href="?page={{page_obj.next_page_number}}" class="btn btn-primary">Next</a>
+            {%endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{%endblock%}

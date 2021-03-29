@@ -1,0 +1,42 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+{%block content%}
+
+
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr class="table table-dark">
+                <th scope="col">SL</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">date_ordered</th>
+                <th scope="col">complete</th>
+                <th scope="col">transaction_id</th>
+                <th scope="col">Order Items</th>
+                <th scope="col">Order Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{order.customer}}</td>
+                <td>{{order.date_ordered}}</td>
+                <td>{{order.complete}}</td>
+                <td>{{order.transaction_id}}</td>
+
+                <td><a href="{%url 'pharmacy_dashboard_order_items' order.id %}">View</a></td>
+                <td><a href="{%url 'pharmacy_dashboard_order_address' order.id %}">View</a></td>
+
+            </tr>
+            {%endfor%}
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+{%endblock%}
