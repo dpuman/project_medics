@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, UpdateOrder, CreateCustomerForm
-from .filters import PharmacyFilter
+from .filters import PharmacyFilter, ProductFilter
 from django.http import HttpResponse
 
 from .models import *
@@ -270,13 +270,16 @@ def shop(request, id):
     else:
         products = shop.product_set.all()
 
+    myFilter = ProductFilter(request.GET, queryset=products)
+    products = myFilter.qs
+
     all_posts = products.order_by('id')
     paginator = Paginator(all_posts, 4, orphans=1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {'products': products, 'page_obj': page_obj, 'categorys': category,
-               'shop': shop,  'shop_id': shop_id, 'cartItems': cartItems}
+               'shop': shop,  'shop_id': shop_id, 'cartItems': cartItems, 'myFilter': myFilter}
 
     return render(request, 'pharmacy/shop.html', context)
 
