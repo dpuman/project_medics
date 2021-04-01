@@ -10,3 +10,11 @@ class PharmacyFilter(django_filters.FilterSet):
     class Meta:
         model = Pharmacy
         fields = ['area', ]
+
+
+class ProductFilter(django_filters.FilterSet):
+    name = CharFilter(field_name='name', lookup_expr='icontains')
+
+    class Meta:
+        model = Product
+        fields = ['name']
