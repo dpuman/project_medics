@@ -144,8 +144,37 @@ def pharmacyAddProduct(request):
     context = {'form': form}
     return render(request, 'pharmacy/pharmacyAddProduct.html', context)
 
+# PHARMACY PRODUCT ACTIONS
+
+
+def pharmacyProductUpdate(request, id):
+    product = Product.objects.get(id=id)
+    form = CreateProductForm(instance=product)
+
+    if request.method == 'POST':
+        form = CreateProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+        return redirect('pharmacy_home')
+
+    context = {'form': form}
+    return render(request, 'pharmacy/pharmacyProductUpdate.html', context)
+
+
+def pharmacyProductDelete(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == 'POST':
+        product.delete()
+        return redirect('pharmacy_home')
+
+    context = {'product': product}
+
+    return render(request, 'pharmacy/pharmacyProductDelete.html', context)
+
 
 # PHARMACY DASHBOARD
+
 
 def pharmacyDashboard(request):
     user = request.user

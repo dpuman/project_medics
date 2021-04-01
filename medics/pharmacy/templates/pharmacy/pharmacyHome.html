@@ -11,6 +11,7 @@ PHARMACY HOME
             <th scope="col">Shop Name</th>
             <th scope="col">Price</th>
             <th scope="col">Pic</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,10 @@ PHARMACY HOME
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
             <td><img width="100px" src="{{product.image.url}}" alt="image"></td>
+            <td>
+                <a href="{%url 'pharmacy_product_update' product.id%}">Edit</a>
+                <a href="{%url 'pharmacy_product_Delete' product.id%}">Delete</a>
+            </td>
         </tr>
         {%endfor%}
 

@@ -18,8 +18,13 @@ urlpatterns = [
     path('pharmacy/register', views.pharmacyRegister, name='pharmacy_register'),
     path('pharmacy/login', views.pharmacyLogin, name='pharmacy_login'),
     path('pharmacy/logout', views.pharmacyLogout, name="pharmacy_logout"),
+
     path('pharmacy/addproduct', views.pharmacyAddProduct,
          name="pharmacy_addproduct"),
+    path('pharmacy/product/edit/<str:id>', views.pharmacyProductUpdate,
+         name="pharmacy_product_update"),
+    path('pharmacy/product/delete/<str:id>', views.pharmacyProductDelete,
+         name="pharmacy_product_Delete"),
 
     path('pharmacy/dashboard', views.pharmacyDashboard, name="pharmacy_dashboard"),
 
