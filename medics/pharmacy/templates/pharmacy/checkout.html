@@ -30,6 +30,10 @@
                         <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
                     </div>
 
+                    <div class="form-field">
+                        <input class="form-control" type="phone" name="phone" placeholder="phone number">
+                    </div>
+
                 </div>
 
                 <hr>
@@ -118,6 +122,7 @@
             'city': null,
 
             'zipcode': null,
+            'phone': null,
         }
 
         if (shipping == true) {
@@ -125,6 +130,7 @@
             shippingInfo.city = form.city.value
 
             shippingInfo.zipcode = form.zipcode.value
+            shippingInfo.phone = form.phone.value
         }
 
         if (user == 'AnonymousUser') {

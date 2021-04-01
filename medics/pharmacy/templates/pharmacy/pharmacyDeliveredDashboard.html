@@ -1,7 +1,7 @@
 {%extends 'pharmacy/pharmacyBase.html'%}
 {%block content%}
 
-<h1>Total Orders: <span>{{total_orders}}</span> </h1>
+
 
 <div class="container">
 
@@ -15,7 +15,6 @@
                 <th scope="col">transaction_id</th>
                 <th scope="col">Order Items</th>
                 <th scope="col">Order Address</th>
-                <th scope="col">Order Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +28,6 @@
 
                 <td><a href="{%url 'pharmacy_dashboard_order_items' order.id %}">View</a></td>
                 <td><a href="{%url 'pharmacy_dashboard_order_address' order.id %}">View</a></td>
-                <td><a class="btn btn-sm btn-info"
-                        href="{% url 'pharmacy_dashboard_update_order' order.id %}">Delivered?</a></td>
 
             </tr>
             {%endfor%}

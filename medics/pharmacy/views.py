@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, CreateCustomerForm
+from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, UpdateOrder, CreateCustomerForm
 from .filters import PharmacyFilter
 from django.http import HttpResponse
 
@@ -158,9 +158,27 @@ def pharmacyDashboard(request):
 
     orders = Order.objects.filter(shop=pharmecy)
 
-    context = {'user': user, 'orders': orders}
+    orders = orders.filter(delivary_status=False).filter(
+        complete=True).order_by('date_ordered')
+
+    total_orders = orders.count()
+
+    context = {'user': user, 'orders': orders, 'total_orders': total_orders}
 
     return render(request, 'pharmacy/pharmacyDashboard.html', context)
+
+
+def pharmacyDashboardUpdateOrder(request, id):
+    order = Order.objects.get(id=id)
+    form = UpdateOrder(instance=order)
+
+    if request.method == 'POST':
+        form = UpdateOrder(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+        return redirect('pharmacy_dashboard')
+    context = {'form': form}
+    return render(request, 'pharmacy/pharmacyDashboardOrderUpdate.html', context)
 
 
 def pharmacyDashboardOrderItems(request, id):
@@ -178,6 +196,24 @@ def pharmacyDashboardOrderAddress(request, id):
     context = {'address': address}
 
     return render(request, 'pharmacy/pharmacyOrderAddress.html', context)
+
+
+def pharmacyDeliveredDashboard(request):
+    user = request.user
+
+    print(user)
+
+    pharmecy = Pharmacy.objects.get(user=user)
+
+    print(pharmecy)
+
+    orders = Order.objects.filter(shop=pharmecy)
+
+    orders = orders.filter(delivary_status=True)
+
+    context = {'user': user, 'orders': orders}
+
+    return render(request, 'pharmacy/pharmacyDeliveredDashboard.html', context)
 
 
 # Shop
@@ -360,6 +396,7 @@ def processOrder(request):
             city=data['shipping']['city'],
 
             zipcode=data['shipping']['zipcode'],
+            phone=data['shipping']['phone'],
         )
 
     return JsonResponse('Payment submitted..', safe=False)

@@ -35,3 +35,9 @@ class CreateCustomerForm(ModelForm):
 
         model = Customer
         fields = ['phone', 'profile_pic']
+
+
+class UpdateOrder(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['delivary_status']

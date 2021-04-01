@@ -22,8 +22,15 @@ urlpatterns = [
          name="pharmacy_addproduct"),
 
     path('pharmacy/dashboard', views.pharmacyDashboard, name="pharmacy_dashboard"),
+
+    path('pharmacy/dashboard/update/<str:id>',
+         views.pharmacyDashboardUpdateOrder, name="pharmacy_dashboard_update_order"),
+
     path('pharmacy/dashboard/items/<str:id>',
          views.pharmacyDashboardOrderItems, name="pharmacy_dashboard_order_items"),
     path('pharmacy/dashboard/address/<str:id>',
          views.pharmacyDashboardOrderAddress, name="pharmacy_dashboard_order_address"),
+    path('pharmacy/delivereddashboard',
+         views.pharmacyDeliveredDashboard, name="pharmacy_delivered_dashboard"),
+
 ]
