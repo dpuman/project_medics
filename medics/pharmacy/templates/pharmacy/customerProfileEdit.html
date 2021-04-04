@@ -1,0 +1,17 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+{%block content%}
+<div class="container">
+
+
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+
+        {{form}}
+        <input type="submit" name="Update Profile">
+    </form>
+
+</div>
+
+{% endblock content %}

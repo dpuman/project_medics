@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, UpdateOrder, CreateCustomerForm
+from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, UpdateOrder, CreateCustomerForm, UpdateCustomerForm, UpdatePharmacyForm
 from .filters import PharmacyFilter, ProductFilter
 from django.http import HttpResponse
 
@@ -107,6 +107,31 @@ def home(request):
     return render(request, 'pharmacy/home.html', context)
 
 # PHARMACY LOGOUT
+
+
+def pharmacyProfile(request):
+
+    user = request.user
+    context = {
+        'user': user
+    }
+    return render(request, 'pharmacy/pharmacyProfile.html', context)
+
+
+def pharmacyProfileEdit(request, id):
+    pharmacy = Pharmacy.objects.get(id=id)
+    form = UpdatePharmacyForm(instance=pharmacy)
+
+    if request.method == 'POST':
+        form = UpdatePharmacyForm(
+            request.POST, request.FILES, instance=pharmacy)
+        if form.is_valid():
+            form.save()
+        return redirect('pharmacy_Profile')
+
+    context = {'form': form}
+
+    return render(request, 'pharmacy/pharmacyProfileEdit.html', context)
 
 
 def pharmacyLogout(request):
@@ -334,6 +359,34 @@ def customerLogin(request):
             messages.info(request, 'Username OR password is incorrect')
     context = {}
     return render(request, 'pharmacy/customerLogin.html', context)
+
+
+def customerProfile(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+
+    user = request.user
+
+    context = {'cartItems': cartItems, 'user': user}
+    return render(request, 'pharmacy/customerProfile.html', context)
+
+
+def customerProfileEdit(request, id):
+
+    customer = Customer.objects.get(id=id)
+
+    form = UpdateCustomerForm(instance=customer)
+    if request.method == 'POST':
+
+        form = UpdateCustomerForm(
+            request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+
+            form.save()
+        return redirect('customer_profile')
+
+    context = {'form': form}
+    return render(request, 'pharmacy/customerProfileEdit.html', context)
 
 
 def customerLogout(request):

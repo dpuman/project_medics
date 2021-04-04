@@ -37,6 +37,20 @@ class CreateCustomerForm(ModelForm):
         fields = ['phone', 'profile_pic']
 
 
+class UpdateCustomerForm(ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        exclude = ['date_created', 'user']
+
+
+class UpdatePharmacyForm(ModelForm):
+    class Meta:
+        model = Pharmacy
+        fields = '__all__'
+        exclude = ['user', 'date_created']
+
+
 class UpdateOrder(ModelForm):
     class Meta:
         model = Order
