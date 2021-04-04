@@ -312,11 +312,16 @@ def shop(request, id):
 # SINGLE PRODUCT VIEW
 
 def SingleProduct(request, id, pid):
+    data = cartData(request)
+    cartItems = data['cartItems']
     shop = Pharmacy.objects.get(id=id)
+    shop_id = shop.id
     product = Product.objects.get(id=pid)
 
     context = {
         'product': product,
+        'cartItems': cartItems,
+        'shop_id': shop_id,
 
     }
     return render(request, 'pharmacy/productSinglePage.html', context)
