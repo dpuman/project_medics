@@ -17,7 +17,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/shop.css' %}">
     <style>
+        label[for="id_name"] {
 
+            display: none;
+        }
+
+        label[for="id_area"] {
+
+            display: none;
+        }
     </style>
 
     <script type="text/javascript">
@@ -84,6 +92,20 @@
 
     {%block content%}
     {%endblock%}
+
+    <!-- Footer -->
+
+    <footer class=" text-center text-white mt-3">
+
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #007BFF;">
+            © 2021 Copyright:
+            <a class="text-white" href="#">Medics</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
