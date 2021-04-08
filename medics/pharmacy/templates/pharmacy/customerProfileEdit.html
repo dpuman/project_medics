@@ -1,16 +1,50 @@
 {% extends 'pharmacy/base.html' %}
 {% load static %}
 {%block content%}
-<div class="container">
+<div class="container p-3 profile-edit">
 
 
     <form action="" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
 
+        <div class="form-group">
+            <label for="name">Name:</label>
+            {{form.name}}
 
-        {{form}}
-        <input type="submit" name="Update Profile">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            {{form.email}}
+            <small id="email" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            {{form.phone}}
+
+        </div>
+
+        <div class="form-group">
+            <label for="profile_pic-clear">Profile Picture:</label>
+            {{form.profile_pic}}
+
+        </div>
+
+
+
+
+        <!-- {{form.name}}
+        {{form.email}}
+        {{form.phone}}
+        {{form.profile_pic}} -->
+        <input type="submit" class="btn btn-info rounded border-0 btn-lg" style="width:15%" name="Update Profile">
     </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
 </div>
 

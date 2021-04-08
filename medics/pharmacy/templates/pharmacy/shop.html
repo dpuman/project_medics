@@ -39,7 +39,7 @@
         </div>
 
         <!-- all products -->
-        <div id='products' class="col-lg-9 mx-auto">
+        <div id='products' class="col-lg-9 mx-auto mb-3">
             <div class="row mx-auto">
                 {% for product in page_obj%}
 
@@ -78,6 +78,11 @@
             {% if page_obj.has_next%}
             <a href="?page={{page_obj.next_page_number}}" class="btn btn-info rounded">Next</a>
             {%endif %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
     </div>
 </div>
