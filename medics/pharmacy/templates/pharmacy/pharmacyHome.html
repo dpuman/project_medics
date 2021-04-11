@@ -1,13 +1,14 @@
 {%extends 'pharmacy/pharmacyBase.html'%}
 
 {%block content%}
-PHARMACY HOME
-{{user.username}}
+
+
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2">Product list</h1>
 
 <table class="table">
     <thead>
         <tr class="table table-dark">
-            <th scope="col">SL</th>
+
             <th scope="col">Shop Name</th>
             <th scope="col">Price</th>
             <th scope="col">Pic</th>
@@ -17,7 +18,7 @@ PHARMACY HOME
     <tbody>
         {%for product in products%}
         <tr>
-            <th scope="row">{{forloop.counter}}</th>
+
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
             <td><img width="100px" src="{{product.image.url}}" alt="image"></td>

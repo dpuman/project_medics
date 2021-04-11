@@ -15,11 +15,11 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            background: #7abecc !important;
+
         }
 
         .user_card {
-            width: 350px;
+            width: 450px;
             margin-top: auto;
             margin-bottom: auto;
             background: #74cfbf;
@@ -70,6 +70,20 @@
             box-shadow: none !important;
             outline: 0px !important;
         }
+
+        .pharmacy-registration input {
+            margin-bottom: 5px;
+            width: 100% !important;
+        }
+
+        .pharmacy-registration-insider {
+            border: 2px solid white;
+            border-radius: 10px;
+
+            color: rgb(87, 85, 85);
+            padding: 5px;
+
+        }
     </style>
 
 </head>
@@ -79,11 +93,11 @@
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
                 <div class="d-flex justify-content-center">
-                    <h3 id="form-title">REGISTER Pharmacy</h3>
+                    <h3 id="form-title">Register Pharmacy</h3>
                 </div>
                 <div class="d-flex justify-content-center form_container">
 
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form class="pharmacy-registration" method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{form.username}}
                         {{form.first_name}}
@@ -92,7 +106,11 @@
                         {{form.password1}}
                         {{form.password2}}
 
-                        {{form_p}}
+                        <div class="pharmacy-registration-insider">
+
+                            {{form_p}}
+
+                        </div>
 
                         <input type="submit" class="btn btn-primary mt-2" value="Create Pharmacy">
                     </form>
@@ -109,11 +127,6 @@
         </div>
     </div>
     <script>
-        /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-		//We start indexing at one because CSRF_token is considered and input field 
-		 */
-
-        //Query All input fields
         var form_fields = document.getElementsByTagName('input')
         form_fields[1].placeholder = 'Username..';
         form_fields[2].placeholder = 'First Name..';
