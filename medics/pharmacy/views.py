@@ -264,8 +264,9 @@ def pharmacyDeliveredDashboard(request):
     orders = Order.objects.filter(shop=pharmecy)
 
     orders = orders.filter(delivary_status=True)
+    total = orders.count()
 
-    context = {'user': user, 'orders': orders}
+    context = {'user': user, 'orders': orders, 'total': total}
 
     return render(request, 'pharmacy/pharmacyDeliveredDashboard.html', context)
 

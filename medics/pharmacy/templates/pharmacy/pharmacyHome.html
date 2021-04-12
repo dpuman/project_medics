@@ -3,33 +3,38 @@
 {%block content%}
 
 
-<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2">Product list</h1>
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 ">Product list</h1>
 
-<table class="table">
-    <thead>
-        <tr class="table table-dark">
+<div class="container-fluid">
 
-            <th scope="col">Shop Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Pic</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%for product in products%}
-        <tr>
+    <table class="table">
+        <thead>
+            <tr class="table  " style=" background-color:#17A2B8; color:white;  ">
 
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td><img width="100px" src="{{product.image.url}}" alt="image"></td>
-            <td>
-                <a href="{%url 'pharmacy_product_update' product.id%}">Edit</a>
-                <a href="{%url 'pharmacy_product_Delete' product.id%}">Delete</a>
-            </td>
-        </tr>
-        {%endfor%}
+                <th class="  text-center py-3">Product</th>
+                <th class="  py-3">Price</th>
 
-    </tbody>
-</table>
+                <th class="  text-center py-3"">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for product in products%}
+            <tr>
 
+                <td class=" product-spacing "><img width=" 100px" src="{{product.image.url}}" alt="image"
+                    class="me-2 ">{{product.name}}</td>
+                <td class="align-middle">{{product.price}}</td>
+
+                <td class="text-center align-middle ">
+                    <a class="btn btn-outline-success btn-sm  "
+                        href="{%url 'pharmacy_product_update' product.id%}">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm"
+                        href="{%url 'pharmacy_product_Delete' product.id%}">Delete</a>
+                </td>
+            </tr>
+            {%endfor%}
+
+            </tbody>
+    </table>
+</div>
 {%endblock%}
