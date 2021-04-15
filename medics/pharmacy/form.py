@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -22,6 +23,13 @@ class CreateProductForm(ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'image': forms.ImageInput(attrs={'class': 'form-control'}),
+        }
 
 
 class CreateUserForm(UserCreationForm):
@@ -49,6 +57,12 @@ class UpdatePharmacyForm(ModelForm):
         model = Pharmacy
         fields = '__all__'
         exclude = ['user', 'date_created']
+        widgets = {
+            'shop_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'area': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 class UpdateOrder(ModelForm):
