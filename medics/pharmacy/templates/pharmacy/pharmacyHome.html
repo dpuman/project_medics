@@ -5,6 +5,24 @@
 
 <h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 ">Product list</h1>
 
+<br>
+<div class="container ">
+    <div class="row">
+        <div class="col ">
+            <div class="card card-body">
+                <form method="get">
+
+                    <p class="d-inline product-search"> Product name : {{myFilter.form}}</p>
+
+                    <button class="btn btn-info rounded btn-sm" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+
 <div class="container-fluid product-list">
 
     <table class="table">

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from .form import CreatePharmacyAdminForm, CreatePharmacyForm, CreateProductForm, CreateUserForm, UpdateOrder, CreateCustomerForm, UpdateCustomerForm, UpdatePharmacyForm
-from .filters import PharmacyFilter, ProductFilter
+from .filters import PharmacyFilter, ProductFilter, PharmacyProductFilter
 from django.http import HttpResponse
 
 from .models import *
@@ -21,8 +21,8 @@ from .utils import cookieCart, cartData, guestOrder
 from django.views.decorators.csrf import csrf_protect
 
 from django.core.paginator import Paginator
+# global_shop = None
 # Pharmacy Register
-global_shop = None
 
 
 def pharmacyRegister(request):
@@ -83,8 +83,12 @@ def pharmacyLogin(request):
 def pharmacyHome(request):
     products = request.user.pharmacy.product_set.all()
 
+    myFilter = PharmacyProductFilter(request.GET, queryset=products)
+    products = myFilter.qs
+
     context = {
-        'products': products
+        'products': products,
+        'myFilter': myFilter,
     }
     return render(request, 'pharmacy/pharmacyHome.html', context)
 
@@ -143,6 +147,7 @@ def pharmacyLogout(request):
 
 
 def pharmacyAddProduct(request):
+
     form = CreateProductForm()
     if request.method == 'POST':
         form = CreateProductForm(request.POST, request.FILES)
@@ -168,6 +173,10 @@ def pharmacyAddProduct(request):
 
     context = {'form': form}
     return render(request, 'pharmacy/pharmacyAddProduct.html', context)
+
+
+def pharmacyAddMultiProduct(request):
+    pass
 
 # PHARMACY PRODUCT ACTIONS
 
@@ -352,6 +361,9 @@ def customerRegister(request):
 
 
 def customerLogin(request):
+    # if request.user.is_authenticated:
+    #     return redirect('home')
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -399,6 +411,8 @@ def customerLogout(request):
 
     logout(request)
     return redirect('customer_login')
+
+# Shop Order Management
 
 
 def cart(request):
