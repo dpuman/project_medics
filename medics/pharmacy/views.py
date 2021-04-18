@@ -21,6 +21,9 @@ from .utils import cookieCart, cartData, guestOrder
 from django.views.decorators.csrf import csrf_protect
 
 from django.core.paginator import Paginator
+
+from django.forms import inlineformset_factory
+
 # global_shop = None
 # Pharmacy Register
 
@@ -176,6 +179,23 @@ def pharmacyAddProduct(request):
 
 
 def pharmacyAddMultiProduct(request):
+    ProductFormSet = inlineformset_factory(
+        Pharmacy, Product, fields=('name', 'price', 'category', 'description', 'image'), extra=2)
+    pharmacy = request.user.pharmacy
+    print("pharmacy", pharmacy)
+
+    formset = ProductFormSet(queryset=Order.objects.none(), instance=pharmacy)
+
+    if request.method == 'POST':
+        formset = ProductFormSet(
+            request.POST, request.FILES, instance=pharmacy)
+        if formset.is_valid():
+            formset.save()
+            return redirect('pharmacy_add_multi_product')
+
+    context = {'form': formset}
+
+    return render(request, 'pharmacy/pharmacyAddMultiProduct.html', context)
     pass
 
 # PHARMACY PRODUCT ACTIONS
