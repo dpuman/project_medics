@@ -30,7 +30,7 @@ class CreateProductForm(ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'image': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
 
-            # 'image': forms.FileField(attrs={'class': 'form-control'}),
+
         }
 
 
@@ -71,6 +71,8 @@ class UpdatePharmacyForm(ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'area': forms.TextInput(attrs={'class': 'form-control'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
+
         }
 
 
