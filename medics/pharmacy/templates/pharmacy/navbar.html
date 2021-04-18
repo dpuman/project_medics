@@ -25,8 +25,14 @@
             <img id="cart-icon" src="{% static 'images/cart.png' %}">
         </a>
         <p id="cart-total">{{cartItems}}</p>
+        {% if request.user.customer %}
         <span><a class=" hello-msg text-white font-weight-bold ml-3" href="{% url 'customer_logout'  %}">
                 Logout</a></span>
+        {% endif %}
+        {% if  not request.user.customer %}
+        <span><a class=" hello-msg text-white font-weight-bold ml-3" href="{% url 'customer_login'  %}">
+                Login</a></span>
+        {% endif %}
 
     </div>
 </nav>

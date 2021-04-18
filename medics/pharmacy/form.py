@@ -28,7 +28,9 @@ class CreateProductForm(ModelForm):
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'image': forms.ImageInput(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
+
+            # 'image': forms.FileField(attrs={'class': 'form-control'}),
         }
 
 
@@ -50,6 +52,13 @@ class UpdateCustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
         exclude = ['date_created', 'user']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
+
+        }
 
 
 class UpdatePharmacyForm(ModelForm):

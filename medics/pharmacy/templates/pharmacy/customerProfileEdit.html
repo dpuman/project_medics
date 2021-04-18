@@ -1,7 +1,9 @@
 {% extends 'pharmacy/base.html' %}
 {% load static %}
 {%block content%}
-<div class="container p-3 profile-edit">
+<h1 class="text-center border rounded m-2 shadow-sm font-weight-bold py-2">Profile Edit</h1>
+
+<div class="container p-3 profile-edit border shadow mt-3">
 
 
     <form action="" enctype="multipart/form-data" method="POST">
@@ -34,11 +36,8 @@
 
 
 
-        <!-- {{form.name}}
-        {{form.email}}
-        {{form.phone}}
-        {{form.profile_pic}} -->
-        <input type="submit" class="btn btn-info rounded border-0 btn-lg" style="width:15%" name="Update Profile">
+
+        <input type="submit" class="btn btn-info rounded border-0 " style="width:15%" name="Update Profile">
     </form>
 
     <br>
