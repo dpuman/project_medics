@@ -66,17 +66,26 @@ def pharmacyRegister(request):
 
 
 def pharmacyLogin(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
+    try:
+        user = request.user
+        phar = Pharmacy.objects.get(user=user)
+        print(user)
+        print(phar)
+        if request.user.is_authenticated and Pharmacy.objects.get(user=user):
+            print('Hey', phar)
             return redirect('pharmacy_home')
-        else:
-            messages.info(request, 'Username OR password is incorrect')
+    except:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('pharmacy_home')
+            else:
+                messages.info(request, 'Username OR password is incorrect')
     context = {}
     return render(request, 'pharmacy/pharmacyLogin.html', context)
 
@@ -96,7 +105,7 @@ def pharmacyHome(request):
     return render(request, 'pharmacy/pharmacyHome.html', context)
 
 
-# HOME
+# Shop HOME
 
 def home(request):
 
@@ -113,9 +122,8 @@ def home(request):
 
     return render(request, 'pharmacy/home.html', context)
 
-# PHARMACY LOGOUT
 
-
+# Pharmacy
 def pharmacyProfile(request):
 
     user = request.user
@@ -139,6 +147,8 @@ def pharmacyProfileEdit(request, id):
     context = {'form': form}
 
     return render(request, 'pharmacy/pharmacyProfileEdit.html', context)
+
+# PHARMACY LOGOUT
 
 
 def pharmacyLogout(request):
@@ -329,7 +339,7 @@ def shop(request, id):
     products = myFilter.qs
 
     all_posts = products.order_by('id')
-    paginator = Paginator(all_posts, 4, orphans=1)
+    paginator = Paginator(all_posts, 6, orphans=1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -381,20 +391,28 @@ def customerRegister(request):
 
 
 def customerLogin(request):
-    # if request.user.is_authenticated:
-    #     return redirect('home')
+    try:
+        user = request.user
+        print(user)
+        val = Customer.objects.get(user=user)
+        print("Hey", val)
 
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        if request.user.is_authenticated and Customer.objects.get(user=user):
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
+            print("Okay")
             return redirect('home')
-        else:
-            messages.info(request, 'Username OR password is incorrect')
+    except:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Username OR password is incorrect')
     context = {}
     return render(request, 'pharmacy/customerLogin.html', context)
 
