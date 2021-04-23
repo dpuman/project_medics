@@ -1,0 +1,34 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+
+{%block content%}
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 ">Add Multiple Product</h1>
+
+
+<div class="container  ">
+    <div class="row">
+        <form class="" action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form.management_form }}
+            {% for field in form %}
+            <div class="d-flex flex-wrap add-multi-form">
+                {{field}}
+
+            </div>
+            <hr>
+            {% endfor %}
+
+            <input type="submit" name="Submit" class="btn btn-info">
+
+
+
+        </form>
+    </div>
+
+</div>
+<hr>
+<hr>
+<hr>
+<hr>
+
+{%endblock%}

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #1CABE2;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">Pharmacy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light" href="{% url 'pharmacy_home'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light" href="{% url 'pharmacy_Profile'%}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light" href="{% url 'pharmacy_addproduct'%}">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light" href="{% url 'pharmacy_add_multi_product'%}">Add Multiple
+                        Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light" href="{% url 'pharmacy_dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-light"
+                        href="{% url 'pharmacy_delivered_dashboard' %}">Delivered/Uncompleted
+                        Orders
+                        Dashboard</a>
+                </li>
+
+
+            </ul>
+            <div class="d-flex">
+
+
+                <span class="hello-msg text-white">Hello, {{request.user}}</span>
+                <span><a class="fw-bold hello-msg text-white  ms-2 text-decoration-none"
+                        href="{% url 'pharmacy_logout' %}">Logout</a></span>
+                </>
+            </div>
+        </div>
+</nav>

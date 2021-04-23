@@ -1,0 +1,44 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+
+{%block content%}
+
+
+<div class="container">
+
+    <table class="table mt-3">
+        <thead>
+            <tr class="table " style=" background-color:#17A2B8; color:white;">
+                <th scope="col">SL</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">Zip Code</th>
+                <th scope="col">Phone</th>
+                <th scope="col">date added</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for addr in address %}
+
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{addr.customer}}</td>
+                <td>{{addr.address}}</td>
+                <td>{{addr.city}}</td>
+                <td>{{addr.zipcode}}</td>
+                <td>{{addr.phone}}</td>
+                <td>{{addr.date_added}}</td>
+
+
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</div>
+
+{%endblock%}

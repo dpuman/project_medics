@@ -1,0 +1,42 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+{%block content%}
+
+
+<div class="container mt-3">
+
+    <table class="table">
+        <thead>
+            <tr class="table " style=" background-color:#17A2B8; color:white;">
+                <th scope=" col">SL</th>
+                <th scope="col">product Name</th>
+                <th scope="col">quantity</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{item.product}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.date_added}}</td>
+                <td>{{item.get_total}}</td>
+
+
+            </tr>
+            {%endfor%}
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+
+
+{%endblock%}

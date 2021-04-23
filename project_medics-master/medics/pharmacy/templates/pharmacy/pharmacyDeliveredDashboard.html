@@ -1,0 +1,46 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+{%block content%}
+
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 text-primary ">Total Orders:
+    <span>{{total}}</span>
+</h1>
+
+<div class="container mt-3 .list">
+
+    <table class="table">
+        <thead>
+            <tr class="table " style=" background-color:#17A2B8; color:white;  ">
+                <th scope="col">SL</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Date ordered</th>
+                <th scope="col">Complete</th>
+                <th scope="col">Transaction id</th>
+                <th scope="col">Order Items</th>
+                <th scope="col">Order Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{order.customer}}</td>
+                <td>{{order.date_ordered}}</td>
+                <td>{{order.complete}}</td>
+                <td>{{order.transaction_id}}</td>
+
+                <td><a style="width:100%;" class="btn btn-sm btn-outline-info "
+                        href="{%url 'pharmacy_dashboard_order_items' order.id %}">View</a></td>
+                <td><a style="width:100%;" class="btn btn-sm btn-outline-info "
+                        href="{%url 'pharmacy_dashboard_order_address' order.id %}">View</a></td>
+
+            </tr>
+            {%endfor%}
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+{%endblock%}

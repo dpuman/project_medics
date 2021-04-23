@@ -1,0 +1,20 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+{%block content%}
+
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 ">Order delivered ?</h1>
+
+<div class="container order-update shadow">
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{form}}
+        <input style="width:50%;" class="btn btn-info btn-sm d-block mt-3 " type="submit" Value="Complete" />
+    </form>
+
+</div>
+
+
+
+{%endblock%}

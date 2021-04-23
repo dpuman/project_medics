@@ -1,0 +1,35 @@
+{% extends 'pharmacy/base.html' %}
+
+{%block content%}
+
+{{product.shop}}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{product.image.url}}" height="250px" alt="Profile picture">
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{product.name}}</h5>
+                    <p class="card-text">Category: {{product.category}}</p>
+                    <p class="card-text">Description: {{product.description}}</p>
+                    <p class="card-text">price: {{product.price}}</p>
+
+
+
+
+                </div>
+                <div class="card-footer">
+
+
+                    <button data-product="{{product.id}}" data-pharmacy="{{shop_id}}" data-action="add"
+                        class="btn btn-outline-secondary add-btn  update-cart">Add to Cart</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

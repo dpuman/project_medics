@@ -1,0 +1,22 @@
+{%extends 'pharmacy/pharmacyBase.html'%}
+
+{%block content%}
+<h1 class="text-center border rounded m-2 shadow-sm fw-bold py-2 ">Update Product</h1>
+
+
+<div class="container add-product  border shadow mt-3 ">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group edit-product">
+            {{form.as_p}}
+        </div>
+
+        <input type="submit" value="Update Product" class="btn btn-info btn-sm mt-3">
+
+
+    </form>
+
+</div>
+
+
+{%endblock%}
