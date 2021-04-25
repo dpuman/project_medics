@@ -1,32 +1,35 @@
 {% extends 'pharmacy/base.html' %}
 
 {%block content%}
+<h1 class="text-center border rounded m-2 shadow-sm font-weight-bold py-2">{{product.name}}</h1>
 
-{{product.shop}}
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="{{product.image.url}}" height="250px" alt="Profile picture">
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <div class="card-body">
-                    <h5 class="card-title">Name: {{product.name}}</h5>
-                    <p class="card-text">Category: {{product.category}}</p>
-                    <p class="card-text">Description: {{product.description}}</p>
-                    <p class="card-text">price: {{product.price}}</p>
+<div class="container mt-3" style="display: block; margin:auto;">
 
-
-
-
+    <div class="card mb-3 shadow-sm" style="max-width: 100%; height:fit-content; ">
+        <div class="container ">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{product.image.url}}" height="450px" alt="Profile picture">
                 </div>
-                <div class="card-footer">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="card-body   " style="height: 350px; padding:40px;">
+                        <h5 class="card-title "><b>Name:</b> {{product.name}}</h5>
+                        <p class="card-text"><b>Category:</b> {{product.category}}</p>
+                        <p class="card-text"><b>Description:</b> {{product.description}}</p>
+                        <p class="card-text"><b>Price:</b> ৳ <b>{{product.price}}</b></p>
 
 
-                    <button data-product="{{product.id}}" data-pharmacy="{{shop_id}}" data-action="add"
-                        class="btn btn-outline-secondary add-btn  update-cart">Add to Cart</button>
 
 
+                    </div>
+                    <div class="card-footer " style="background-color: white;">
+
+
+                        <button data-product="{{product.id}}" data-pharmacy="{{shop_id}}" data-action="add"
+                            class="btn btn-outline-info rounded add-btn  update-cart">Add to Cart</button>
+
+
+                    </div>
                 </div>
             </div>
         </div>
