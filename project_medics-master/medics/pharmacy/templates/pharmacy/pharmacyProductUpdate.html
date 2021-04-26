@@ -5,7 +5,7 @@
 
 
 <div class="container add-product  border shadow mt-3 ">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group edit-product">
             {{form.as_p}}

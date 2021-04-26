@@ -216,7 +216,7 @@ def pharmacyProductUpdate(request, id):
     form = CreateProductForm(instance=product)
 
     if request.method == 'POST':
-        form = CreateProductForm(request.POST, instance=product)
+        form = CreateProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
         return redirect('pharmacy_home')
