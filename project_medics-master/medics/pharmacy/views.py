@@ -190,7 +190,7 @@ def pharmacyAddProduct(request):
 
 def pharmacyAddMultiProduct(request):
     ProductFormSet = inlineformset_factory(
-        Pharmacy, Product, fields=('name', 'price', 'category', 'description', 'image'), extra=5)
+        Pharmacy, Product, fields=('name', 'price', 'category', 'description', 'image'), extra=20)
     pharmacy = request.user.pharmacy
     print("pharmacy", pharmacy)
 
