@@ -32,12 +32,12 @@
             {%for pharm in pharmecy%}
             <tr>
 
-                <td class=" font-weight-bold" style="width: 288px;"><img width="100px" class="mr-2"
+                <td class=" font-weight-bold" style="width: 288px;"><img width="80px" class="mr-2"
                         src="{{pharm.profile_pic.url}}" alt="image">{{pharm.shop_name}}</td>
                 <td class="text-center align-middle font-weight-bold">{{pharm.area}}</td>
 
                 <td class="align-middle"><a href="{% url 'shop' pharm.id %}"
-                        class="btn btn-info rounded btn-block">View</a>
+                        class="btn btn-outline-info rounded btn-block">V i e w</a>
                 </td>
             </tr>
             {%endfor%}
