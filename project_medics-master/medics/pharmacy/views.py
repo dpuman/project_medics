@@ -54,7 +54,7 @@ def pharmacyRegister(request):
                 shop_name=shop_name, phone=phone, address=address, area=area, profile_pic=profile_pic
             )
 
-            return HttpResponse('Success')
+            return redirect('pharmacy_login')
 
     context = {
         'form': form,
@@ -190,7 +190,7 @@ def pharmacyAddProduct(request):
 
 def pharmacyAddMultiProduct(request):
     ProductFormSet = inlineformset_factory(
-        Pharmacy, Product, fields=('name', 'price', 'category', 'description', 'image'), extra=20)
+        Pharmacy, Product, fields=('name', 'price', 'category', 'description', 'image'), can_delete=False, extra=20)
     pharmacy = request.user.pharmacy
     print("pharmacy", pharmacy)
 
@@ -206,7 +206,7 @@ def pharmacyAddMultiProduct(request):
     context = {'form': formset}
 
     return render(request, 'pharmacy/pharmacyAddMultiProduct.html', context)
-    pass
+
 
 # PHARMACY PRODUCT ACTIONS
 
